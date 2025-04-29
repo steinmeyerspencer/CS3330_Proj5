@@ -6,19 +6,15 @@ import java.util.List;
 
 import com.google.gson.reflect.TypeToken;
 
+import petAdoption.model.Shelter;
+import petAdoption.model.ShelterModel;
 import petAdoption.pet.AdoptablePet;
-import petAdoption.shelter.Shelter;
+import petAdoption.pet.Pet;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		Shelter<AdoptablePet> petConverter = new Shelter<AdoptablePet>();
-		
-		Type adoptablePetListType = new TypeToken<ArrayList<AdoptablePet>>() {}.getType();
-		petConverter.readInPets("src/main/resources/pets.json",adoptablePetListType);
-		List<AdoptablePet> adoptablePets = petConverter.getPetList();
-		System.out.println(adoptablePets);
 		
 		
 		

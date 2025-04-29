@@ -1,4 +1,4 @@
-package petAdoption.shelter;
+package petAdoption.model;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -51,20 +51,16 @@ public class Shelter<T extends Pet> {
 	}
 	
 	/**
-	 * add a pet object to the list
-	 * @param pet
-	 */
-	public void addPet(T pet) {
-		this.petList.add(pet);
-	}
-	
-	/**
 	 * generic getter for petList
 	 * @return
 	 */
 	public List<T> getPetList(){
 		return this.petList;
 	}
+	
+	
+	
+
 	
 	
 		

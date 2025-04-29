@@ -14,11 +14,13 @@ public class AdoptablePet extends Pet{
 		this.adoptable = true;
 	}
 	
-	public Integer getID() {
-		try {
-			return Integer.parseInt(id);
-		}
-	}
+	// should probably have this but idk how to do it rn
+//	public Integer getID() {
+//		try {
+//			return Integer.parseInt(id);
+//		}
+//	}
+	
 //	private Integer id;
 //	private String name;
 //	private String type;

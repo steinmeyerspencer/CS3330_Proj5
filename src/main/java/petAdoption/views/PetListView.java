@@ -2,42 +2,70 @@ package petAdoption.views;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import petAdoption.pet.Pet;
+
 import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
+
 import javax.swing.JList;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 
 public class PetListView extends JFrame{
 	
+	private JPanel panel;
+	private JList<Pet> list;
+	private JButton addButton;
+	private JButton adoptButton;
+	private JButton removeButton;
+	private JButton deleteButton;
+	private DefaultListModel<Pet> modelList;
+
 	
-	public PetListView() {
+	
+	public PetListView(DefaultListModel<Pet> model) {
 		setTitle("Pet List Page");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(300, 100, 500, 400);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		setContentPane(panel);
 		getContentPane().setLayout(null);
 		
-		JList list = new JList();
+		this.modelList = model;
+		list = new JList<>(model);
 		list.setBounds(26, 39, 435, 237);
 		panel.add(list);
 		
-		JButton addButton = new JButton("Add a Pet");
+		addButton = new JButton("Add a Pet");
 		addButton.setBounds(26, 300, 112, 21);
 		panel.add(addButton);
-		
-		JButton adoptButton = new JButton("Adopt Selected");
+
+		adoptButton = new JButton("Adopt Selected");
 		adoptButton.setBounds(136, 300, 112, 21);
 		panel.add(adoptButton);
 		
-		JButton removeButton = new JButton("Remove Selected");
+		removeButton = new JButton("Remove Selected");
 		removeButton.setBounds(246, 300, 112, 21);
 		panel.add(removeButton);
 		
-		JButton deleteButton = new JButton("Delete Selected");
+		deleteButton = new JButton("Delete Selected");
 		deleteButton.setBounds(356, 300, 112, 21);
 		panel.add(deleteButton);
 		
 		
+	}
+	public void addActionListenerToDeleteUserButton(ActionListener actionListener) {
+		deleteButton.addActionListener(actionListener);
+	}
+	
+	public DefaultListModel<Pet> getPetList(){
+		return (DefaultListModel<Pet>)list.getModel();
+	}
+	
+	public int getSelectedPet() {
+		System.out.println("Selected user index: " + list.getSelectedIndex());
+		return list.getSelectedIndex();
 	}
 }
