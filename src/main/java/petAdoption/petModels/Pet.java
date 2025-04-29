@@ -1,4 +1,4 @@
-package petAdoption.pet;
+package petAdoption.petModels;
 
 public abstract class Pet {
 	

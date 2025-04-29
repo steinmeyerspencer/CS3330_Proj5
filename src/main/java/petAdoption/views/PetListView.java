@@ -3,7 +3,7 @@ package petAdoption.views;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import petAdoption.pet.Pet;
+import petAdoption.petModels.Pet;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;

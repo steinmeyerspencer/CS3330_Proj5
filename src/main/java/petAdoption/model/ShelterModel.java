@@ -3,7 +3,7 @@ package petAdoption.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import petAdoption.pet.Pet;
+import petAdoption.petModels.Pet;
 
 public class ShelterModel {
 	

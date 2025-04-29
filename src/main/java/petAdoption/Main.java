@@ -8,8 +8,8 @@ import com.google.gson.reflect.TypeToken;
 
 import petAdoption.model.Shelter;
 import petAdoption.model.ShelterModel;
-import petAdoption.pet.AdoptablePet;
-import petAdoption.pet.Pet;
+import petAdoption.petModels.AdoptablePet;
+import petAdoption.petModels.Pet;
 
 public class Main {
 

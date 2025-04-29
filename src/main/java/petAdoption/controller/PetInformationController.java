@@ -12,7 +12,7 @@ import com.google.gson.reflect.TypeToken;
 
 import petAdoption.model.Shelter;
 import petAdoption.model.ShelterModel;
-import petAdoption.pet.Pet;
+import petAdoption.petModels.Pet;
 import petAdoption.views.AddPetView;
 import petAdoption.views.PetListView;
 

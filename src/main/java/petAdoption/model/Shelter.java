@@ -10,8 +10,8 @@ import java.util.Scanner;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import petAdoption.pet.AdoptablePet;
-import petAdoption.pet.Pet;
+import petAdoption.petModels.AdoptablePet;
+import petAdoption.petModels.Pet;
 
 public class Shelter<T extends Pet> {
 	
