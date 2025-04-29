@@ -1,4 +1,4 @@
-package petAdoption.readfiles;
+package petAdoption.shelter;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,21 +16,21 @@ import petAdoption.pet.Pet;
 public class Shelter<T extends Pet> {
 	
 	private Gson gson;
+	private List<T> petList;
 	
 	/**
 	 * non - parameterized constructor
 	 */
 	public Shelter() {
 		this.gson = new Gson();
+		petList = new ArrayList();
 	}
 	
 	/**
 	 * reads in pets file, returns list of Pets
 	 * takes filepath and Type as parameters and returns list of Pets
 	 */
-	public List<T> readInPets(String filepath, Type type) {	
-		List<T> petList = new ArrayList<>();
-		
+	public void readInPets(String filepath, Type type) {	
 		try{
 			Scanner fileInput = new Scanner(new FileInputStream(filepath));
             StringBuilder jsonContent = new StringBuilder();
@@ -39,14 +39,34 @@ public class Shelter<T extends Pet> {
             }
             fileInput.close();
             
-            petList = gson.fromJson(jsonContent.toString(), type);
+            List<T> loadedPets = gson.fromJson(jsonContent.toString(), type);
+            
+            this.petList.addAll(loadedPets);
             
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        return petList;
+        
 	}
+	
+	/**
+	 * add a pet object to the list
+	 * @param pet
+	 */
+	public void addPet(T pet) {
+		this.petList.add(pet);
+	}
+	
+	/**
+	 * generic getter for petList
+	 * @return
+	 */
+	public List<T> getPetList(){
+		return this.petList;
+	}
+	
+	
 		
 		
 

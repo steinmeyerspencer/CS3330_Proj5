@@ -2,18 +2,38 @@ package petAdoption.pet;
 
 public class ExoticAnimal extends Pet{
 	
-	private boolean adoptable;
+	/*
+	 * 
+	 *   {
+    "uniqueId": "exo001",
+    "animalName": "Zazu",
+    "category": "Bird",
+    "subSpecies": "Toucan",
+    "yearsOld": 4
+  },*/
+	
+	private String uniqueID;
+	private String animalName;
+	private String category;
+	private String subSpecies;
+	private Integer yearsOld;
+	
+	public Integer changeUniqueIdToInteger(String uniqueID) {
+		String intPartOfID = uniqueID.replace("exo", "");
+		Integer integerID = 1000 + Integer.parseInt(intPartOfID);
+		return integerID;
+	}
 	
 	/**
 	 * non-parameterized constructor
 	 */
 	public ExoticAnimal() {
 		super();
-		this.adoptable = false;
+		this.setAdoptable(false);
 	}
 
 	/**
-	 * parameterized constructor
+	 * parameterized constructor, changes uniqueID from exo00_ to 100_
 	 * @param id
 	 * @param name
 	 * @param type
@@ -21,8 +41,8 @@ public class ExoticAnimal extends Pet{
 	 * @param age
 	 * @param adopted
 	 */
-	public ExoticAnimal(Integer id, String name, String type, String species, Integer age, boolean adopted) {
-//		super(id,name,type,species,age,adopted);
+	public ExoticAnimal(String uniqueID, String animalName, String category, String subSpecies, Integer yearsOld) {
+		super(changeUniqueIdToInteger(uniqueID), animalName, category, subspecies, yearsold);
 		this.adoptable = false;
 	}
 

@@ -7,22 +7,20 @@ import java.util.List;
 import com.google.gson.reflect.TypeToken;
 
 import petAdoption.pet.AdoptablePet;
-import petAdoption.readfiles.Shelter;
+import petAdoption.shelter.Shelter;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Shelter petConverter = new Shelter();
+		
+		Shelter<AdoptablePet> petConverter = new Shelter<AdoptablePet>();
 		
 		Type adoptablePetListType = new TypeToken<ArrayList<AdoptablePet>>() {}.getType();
-		List<AdoptablePet> adoptablePets = petConverter.readInPets("src/main/resources/pets.json",adoptablePetListType);
+		petConverter.readInPets("src/main/resources/pets.json",adoptablePetListType);
+		List<AdoptablePet> adoptablePets = petConverter.getPetList();
 		System.out.println(adoptablePets);
 		
 		
-		
-		// This is Dane
-		// Just trying to see if I am connected to the project
-		System.out.println("This is Dane");
 		
 	}
 
