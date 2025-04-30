@@ -6,12 +6,20 @@ public class AdoptablePet extends Pet{
 	
 	public AdoptablePet() {
 		super();
-		this.adoptable = true;
+		this.setAdoptable(true);
 	}
 	
 	public AdoptablePet(String id, String name, String type, String species, Integer age, boolean adopted) {
 		super(id,name,type,species,age,adopted);
-		this.adoptable = true;
+		this.setAdoptable(true);
+	}
+
+	public boolean isAdoptable() {
+		return adoptable;
+	}
+
+	public void setAdoptable(boolean adoptable) {
+		this.adoptable = adoptable;
 	}
 	
 	// should probably have this but idk how to do it rn

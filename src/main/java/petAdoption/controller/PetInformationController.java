@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 import com.google.gson.reflect.TypeToken;
 
 import petAdoption.model.Shelter;
 import petAdoption.model.ShelterModel;
+import petAdoption.petModels.AdoptablePet;
 import petAdoption.petModels.Pet;
 import petAdoption.views.AddPetView;
 import petAdoption.views.PetListView;
@@ -26,18 +28,34 @@ public class PetInformationController {
 	
 	public PetInformationController() {
 	
+		// set up shelter and read in pets
 		Shelter<Pet> shelter = new Shelter<Pet>();
-		
-		Type adoptablePetListType = new TypeToken<ArrayList<Pet>>() {}.getType();
+		Type adoptablePetListType = new TypeToken<ArrayList<AdoptablePet>>() {}.getType();
 		shelter.readInPets("src/main/resources/pets.json",adoptablePetListType);
-		List<Pet> adoptablePets = shelter.getPetList();
-		System.out.println(adoptablePets);
+		//NEED TO READ IN EXOTIC PETS WHEN ADAPTER IS WORKING
 		
-		ShelterModel model = new ShelterModel();
-	
+//		List<Pet> adoptablePets = shelter.getPetList();
+//		System.out.println(adoptablePets);
+		
+		// add pets to shelterModel
+		this.shelterModel = new ShelterModel();
 		for (Pet pet : shelter.getPetList()) {
-		    model.addPet(pet);
+		    this.shelterModel.addPet(pet);
 		}
+		
+		// make and fill shared model
+		this.sharedModel = new DefaultListModel<>();
+	    for (Pet pet : this.shelterModel.getPetList()) {
+	        sharedModel.addElement(pet);
+	    }
+	    
+	    // create GUI, link the list
+	    this.petListView = new PetListView(sharedModel);
+	    this.petListView.addActionListenerToDeleteUserButton(new DeleteUserButtonActionListener());
+	    
+	    // add listener to view
+	    petListView.addActionListenerToViewPetButton(new ViewSelectedPetInformation());
+
 		
 	}
 	
@@ -53,12 +71,34 @@ public class PetInformationController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-	        int selectedIndex = petListView.getSelectedPet();
-	        petListView.getPetList().remove(selectedIndex); 
-            shelterModel.getPetList().remove(selectedIndex);
+	        int selectedIndex = petListView.getSelectedPetIndex();
+	        sharedModel.remove(selectedIndex); 
+	        shelterModel.getPetList().remove(selectedIndex);
 		}
 		
 	}
 	
+	
+	/**
+	 * class for the actionListener that will be implemented for the viewButton
+	 */
+	private class ViewSelectedPetInformation implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Pet selected = petListView.getSelectedPet();
+			if (selected != null) {
+			    JOptionPane.showMessageDialog(petListView,
+			    	"ID: " + selected.getId() +
+			        "\nName: " + selected.getName() +
+			        "\nAge: " + selected.getAge() +
+			        "\nType: " + selected.getType() +
+			        "\nSpecies: " + selected.getSpecies() + 
+			        "\nAdopted: " + selected.isAdopted(),
+			        "Pet Details",
+			        JOptionPane.INFORMATION_MESSAGE
+			    );
+			}
+		}
+	}
 	
 }
