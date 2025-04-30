@@ -81,15 +81,35 @@ public class PetListView extends JFrame{
 		viewButton.addActionListener(actionListener);
 	}
 	
+	/**
+	 * adds action listener to addPet button
+	 * @param actionListener
+	 */
+	public void addActionListenerToAddPetButton(ActionListener actionListener) {
+		addButton.addActionListener(actionListener);
+	}
+	
+	/**
+	 * returns petList
+	 * @return
+	 */
 	public DefaultListModel<Pet> getPetList(){
 		return (DefaultListModel<Pet>)list.getModel();
 	}
 	
+	/**
+	 * returns selected index
+	 * @return
+	 */
 	public int getSelectedPetIndex() {
 		System.out.println("Selected user index: " + list.getSelectedIndex());
 		return list.getSelectedIndex();
 	}
 	
+	/**
+	 * returns actual object that is selected
+	 * @return
+	 */
 	public Pet getSelectedPet() {
 	    return list.getSelectedValue();
 	}

@@ -15,7 +15,7 @@ import petAdoption.model.Shelter;
 import petAdoption.model.ShelterModel;
 import petAdoption.petModels.AdoptablePet;
 import petAdoption.petModels.Pet;
-import petAdoption.views.AddPetView;
+import petAdoption.views.AddPetDialog;
 import petAdoption.views.PetListView;
 
 public class PetInformationController {
@@ -26,6 +26,13 @@ public class PetInformationController {
     private DefaultListModel<Pet> sharedModel;
 
 	
+    /**
+     * non parameterized constructor
+     * sets up shelter, 
+     * reads in pets from json files
+     * adds pets from files to Shelter and ShelterModel
+     * creates GUI, links the lists
+     */
 	public PetInformationController() {
 	
 		// set up shelter and read in pets
@@ -51,10 +58,13 @@ public class PetInformationController {
 	    
 	    // create GUI, link the list
 	    this.petListView = new PetListView(sharedModel);
-	    this.petListView.addActionListenerToDeleteUserButton(new DeleteUserButtonActionListener());
 	    
-	    // add listener to view
-	    petListView.addActionListenerToViewPetButton(new ViewSelectedPetInformation());
+	    
+	    // add listeners to view
+	    this.petListView.addActionListenerToDeleteUserButton(new DeletePetButtonActionListener());
+	    this.petListView.addActionListenerToViewPetButton(new ViewSelectedPetInformation());
+	    this.petListView.addActionListenerToAddPetButton(new AddButtonActionListener());
+	    
 
 		
 	}
@@ -67,7 +77,10 @@ public class PetInformationController {
 	}
 	
 	
-	private class DeleteUserButtonActionListener implements ActionListener {
+	/**
+	 * action listener for deleteButton
+	 */
+	private class DeletePetButtonActionListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -78,9 +91,57 @@ public class PetInformationController {
 		
 	}
 	
+	private class AddPetSubmitButtonActionListener implements ActionListener{
+	    private AddPetDialog dialog;
+	    public AddPetSubmitButtonActionListener(AddPetDialog dialog) {
+	        this.dialog = dialog;
+	    }
+		@Override
+		public void actionPerformed(ActionEvent e) {			
+			// pull from pet form
+	        try {
+	        	String id = dialog.getIDInput();
+	            String name = dialog.getNameInput();
+	            String type = dialog.getTypeInput();
+	            String species = dialog.getSpeciesInput();
+	            Integer age = dialog.getAgeInput();
+	            boolean adopted = dialog.getAdoptedInput();
+
+	         // make into a Pet
+	            Pet newPet = new AdoptablePet(id,name,type,species,age,adopted);
+	            sharedModel.addElement(newPet);
+	            shelterModel.addPet(newPet);
+	            dialog.dispose();
+	        } catch (NumberFormatException ex) {
+	            JOptionPane.showMessageDialog(dialog, "Please enter a valid number for age.");
+	        }
+		}
+	}
+	
+	private class AddButtonActionListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			AddPetDialog dialog = new AddPetDialog(petListView);
+	        dialog.addSubmitListener(new AddPetSubmitButtonActionListener(dialog));
+	        dialog.showDialog();
+		}
+		
+	}
+	
+	private class SaveButtonActionListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// save list (shelterModel.getPetList()) to JSON file
+		}
+		
+	}
+	
 	
 	/**
-	 * class for the actionListener that will be implemented for the viewButton
+	 *	actionListener for viewButton
+	 * when view button is clicked, displays the pet's information in a JOption Pane that is a pop-up
 	 */
 	private class ViewSelectedPetInformation implements ActionListener{
 		@Override
