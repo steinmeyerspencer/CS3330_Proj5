@@ -1,12 +1,10 @@
-save list back to a json in the format specified in 
-	could add save button at bottom of main view, or could put that save button at the bottom of the add dialog
-	he prob wants us to do the first
-	in that case. saveButton actionListener will be saving to JSon
+[SAVE BUTTON]save list back to a json in the format specified in 
+	saveButton action listener will be saving to JSON
 
 set up Adapter, read in exotic file (two more lines under the reading in the controller)
 
-SORTING( then put options in the dropdown menu )
-
-do not allow me to adopt a pet who's already adopted or is an exotic animal (ADOPT BUTTON)
+[comboBox] SORTING( then put options in the dropdown menu )
 
 to dane: right now i have the ID field as a String, could change or could not, idrc
+
+should probably flash messages when delete, adopt, add is completed

@@ -64,6 +64,7 @@ public class PetInformationController {
 	    this.petListView.addActionListenerToDeleteUserButton(new DeletePetButtonActionListener());
 	    this.petListView.addActionListenerToViewPetButton(new ViewSelectedPetInformation());
 	    this.petListView.addActionListenerToAddPetButton(new AddButtonActionListener());
+	    this.petListView.addActionListenerToAdoptButton(new AdoptButtonActionListener());
 	    
 
 		
@@ -85,12 +86,18 @@ public class PetInformationController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 	        int selectedIndex = petListView.getSelectedPetIndex();
-	        sharedModel.remove(selectedIndex); 
-	        shelterModel.getPetList().remove(selectedIndex);
+	        if (selectedIndex != -1) {
+		        sharedModel.remove(selectedIndex); 
+		        shelterModel.getPetList().remove(selectedIndex);
+	        }
 		}
 		
 	}
 	
+	
+	/**
+	 * adds action listener to the submit button inside the Add dialog
+	 */
 	private class AddPetSubmitButtonActionListener implements ActionListener{
 	    private AddPetDialog dialog;
 	    public AddPetSubmitButtonActionListener(AddPetDialog dialog) {
@@ -118,6 +125,9 @@ public class PetInformationController {
 		}
 	}
 	
+	/**
+	 * when add button on home page is clicked, opens dialog, sets submit button action listener
+	 */
 	private class AddButtonActionListener implements ActionListener {
 
 		@Override
@@ -129,6 +139,24 @@ public class PetInformationController {
 		
 	}
 	
+	/**
+	 * when adopt button clicked, if pet is selected, is 
+	 */
+	private class AdoptButtonActionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Pet selected = petListView.getSelectedPet();
+			if(selected != null && !selected.isAdopted() && selected.isAdoptable()) {
+				selected.setAdopted(true);
+				petListView.repaint();
+			}
+		}
+		
+	}
+	
+	
+	// NEED TO DO
 	private class SaveButtonActionListener implements ActionListener {
 
 		@Override

@@ -89,6 +89,10 @@ public class PetListView extends JFrame{
 		addButton.addActionListener(actionListener);
 	}
 	
+	public void addActionListenerToAdoptButton(ActionListener actionListener) {
+		adoptButton.addActionListener(actionListener);
+	}
+	
 	/**
 	 * returns petList
 	 * @return
@@ -111,6 +115,9 @@ public class PetListView extends JFrame{
 	 * @return
 	 */
 	public Pet getSelectedPet() {
+		if (list.getSelectedIndex() == -1) {
+	        return null;
+	    }
 	    return list.getSelectedValue();
 	}
 }

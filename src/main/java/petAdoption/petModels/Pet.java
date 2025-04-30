@@ -10,6 +10,7 @@ public abstract class Pet {
 	private String species;
 	private Integer age;
 	private boolean adopted;
+	public abstract boolean isAdoptable();
 	
 	/**
 	 * parameterized constructor
