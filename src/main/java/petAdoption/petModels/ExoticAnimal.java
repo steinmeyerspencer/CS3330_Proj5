@@ -29,7 +29,6 @@ public class ExoticAnimal extends Pet{
 	 */
 	public ExoticAnimal() {
 		super();
-		this.setAdoptable(false);
 	}
 
 	/**
@@ -43,7 +42,6 @@ public class ExoticAnimal extends Pet{
 	 */
 	public ExoticAnimal(String uniqueID, String animalName, String category, String subSpecies, Integer yearsOld) {
 		super(changeUniqueIdToInteger(uniqueID), animalName, category, subspecies, yearsold);
-		this.adoptable = false;
 	}
 
 	/**
@@ -51,16 +49,9 @@ public class ExoticAnimal extends Pet{
 	 * @return
 	 */
 	public boolean isAdoptable() {
-		return adoptable;
+		return false;
 	}
 
-	/**
-	 * regular setter
-	 * @param adoptable
-	 */
-	public void setAdoptable(boolean adoptable) {
-		this.adoptable = adoptable;
-	}
 
 	/**
 	 * regular toString
