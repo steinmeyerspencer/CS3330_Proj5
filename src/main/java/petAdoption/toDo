@@ -1,12 +1,8 @@
 [SAVE BUTTON]save list back to a json in the format specified in 
 	saveButton action listener will be saving to JSON
 
-set up Adapter, read in exotic file (two more lines under the reading in the controller)
-
 [comboBox] SORTING( then put options in the dropdown menu )
 
-to dane: right now i have the ID field as a String, could change or could not, idrc
+am not going to change the ID field to String because the return value would be messed up and we would have to change a ton of code
+	if you want to change it, feel free, but tbh if we lose a few points for it, we lose a few points
 
-should probably flash messages when delete, adopt, add is completed
-
-change so that only pet has adoptable

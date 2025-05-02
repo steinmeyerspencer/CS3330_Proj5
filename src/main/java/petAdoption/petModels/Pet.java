@@ -2,14 +2,12 @@ package petAdoption.petModels;
 
 public abstract class Pet {
 	
-	// i think we should remove id and put something like
-	// public abstract getID(); so that each class can implement it and we won't have to specify the type
+
 	private String id;
 	private String name;
 	private String type;
 	private String species;
 	private Integer age;
-//	private boolean adopted;
 	public abstract boolean isAdoptable();
 	
 	/**
@@ -27,7 +25,6 @@ public abstract class Pet {
         this.type = type;
         this.species = species;
         this.age = age;
-//        this.adopted = adopted;
     }
 	
 	/**
@@ -125,19 +122,5 @@ public abstract class Pet {
 		this.age = age;
 	}
 	
-//	/**
-//	 * regular getter
-//	 * @return
-//	 */
-//	public boolean isAdopted() {
-//		return adopted;
-//	}
-//	
-//	/**
-//	 * regular setter
-//	 * @param adopted
-//	 */
-//	public void setAdopted(boolean adopted) {
-//		this.adopted = adopted;
-//	}
+
 }

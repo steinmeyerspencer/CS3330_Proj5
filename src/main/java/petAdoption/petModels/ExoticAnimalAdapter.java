@@ -2,6 +2,7 @@ package petAdoption.petModels;
 
 public class ExoticAnimalAdapter extends Pet{
 	
+	// i dont think we need this
 	private ExoticAnimal exoticAnimal;
 	
 	

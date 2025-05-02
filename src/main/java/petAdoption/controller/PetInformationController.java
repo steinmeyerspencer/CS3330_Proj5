@@ -99,6 +99,7 @@ public class PetInformationController {
 	        if (selectedIndex != -1) {
 		        sharedModel.remove(selectedIndex); 
 		        shelterModel.getPetList().remove(selectedIndex);
+				JOptionPane.showMessageDialog(petListView, "Pet deleted successfully", "Pet Deleted", JOptionPane.INFORMATION_MESSAGE);
 	        }
 			else {
 				JOptionPane.showMessageDialog(petListView, "Please select a pet","Error", JOptionPane.ERROR_MESSAGE);
@@ -173,7 +174,6 @@ public class PetInformationController {
 						selected.setAdopted(true);
 						sharedModel.set(selectedIndex,selected);
 						JOptionPane.showMessageDialog(petListView, "Congrats on your new pet!", "Pet Adopted!", JOptionPane.INFORMATION_MESSAGE);
-						petListView.repaint();
 					}
 					else {
 						JOptionPane.showMessageDialog(petListView, "Pet has already been adopted", "Error", JOptionPane.ERROR_MESSAGE);
