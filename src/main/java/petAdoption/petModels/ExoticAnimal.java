@@ -2,20 +2,6 @@ package petAdoption.petModels;
 
 public class ExoticAnimal{
 	
-	/*
-	 * 
-	 *   {
-    "uniqueId": "exo001",
-    "animalName": "Zazu",
-    "category": "Bird",
-    "subSpecies": "Toucan",
-    "yearsOld": 4
-  },*/
-	
-	
-
-	
-	
 	private String uniqueID;
 	private String animalName;
 	private String category;
