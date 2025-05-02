@@ -24,6 +24,7 @@ public class PetListView extends JFrame{
 	private JButton viewButton;
 	private DefaultListModel<Pet> modelList;
 	private JComboBox comboBox;
+	private JButton btnNewButton;
 	
 
 	
@@ -59,8 +60,12 @@ public class PetListView extends JFrame{
 		panel.add(viewButton);
 		
 		comboBox = new JComboBox();
-		comboBox.setBounds(232, 332, 29, 21);
+		comboBox.setBounds(283, 331, 29, 21);
 		panel.add(comboBox);
+		
+		btnNewButton = new JButton("Save");
+		btnNewButton.setBounds(146, 331, 85, 21);
+		panel.add(btnNewButton);
 		
 		
 	}
