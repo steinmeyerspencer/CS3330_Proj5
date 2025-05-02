@@ -2,7 +2,7 @@ package petAdoption.petModels;
 
 public class ExoticAnimal{
 	
-	private String uniqueID;
+	private String uniqueId;
 	private String animalName;
 	private String category;
 	private String subSpecies;
@@ -21,8 +21,9 @@ public class ExoticAnimal{
 	 * Getter for uniqueID
 	 * @return
 	 */
+	
 	public String getUniqueID() {
-		return uniqueID;
+		return uniqueId;
 	}
 	
 	/**
@@ -30,7 +31,7 @@ public class ExoticAnimal{
 	 * @param uniqueID
 	 */
 	public void setUniqueID(String uniqueID) {
-		this.uniqueID = uniqueID;
+		this.uniqueId = uniqueID;
 	}
 	
 	
@@ -102,12 +103,6 @@ public class ExoticAnimal{
 	public void setYearsOld(Integer yearsOld) {
 		this.yearsOld = yearsOld;
 	}
-	
-	
-	
-
-	
-	
 	
 	
 	

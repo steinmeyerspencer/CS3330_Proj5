@@ -23,10 +23,13 @@ public class ExoticAnimalLoader {
 			Gson gson = new Gson();
 			Reader reader = new FileReader(filePath);
 			Type exoticType = new TypeToken<List<ExoticAnimal>>() {}.getType();
-			List<ExoticAnimal> rawExotics = gson.fromJson(reader, exoticType);
 			
+			List<ExoticAnimal> rawExotics = gson.fromJson(reader, exoticType);
+			System.out.println(rawExotics);
+						
 			List<ExoticAnimalAdapter> wrapped = new ArrayList<>();
 			for (ExoticAnimal ea : rawExotics) {
+				System.out.println("Exotic name: " + ea.getUniqueID());
 				wrapped.add(new ExoticAnimalAdapter(ea));
 			}
 			

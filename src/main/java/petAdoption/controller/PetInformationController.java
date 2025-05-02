@@ -15,6 +15,7 @@ import petAdoption.model.ExoticAnimalLoader;
 import petAdoption.model.Shelter;
 import petAdoption.model.ShelterModel;
 import petAdoption.petModels.AdoptablePet;
+import petAdoption.petModels.ExoticAnimal;
 import petAdoption.petModels.ExoticAnimalAdapter;
 import petAdoption.petModels.Pet;
 import petAdoption.views.AddPetDialog;
@@ -45,7 +46,9 @@ public class PetInformationController {
 		Type adoptablePetListType = new TypeToken<ArrayList<AdoptablePet>>() {}.getType();
 		shelter.readInPets("src/main/resources/pets.json",adoptablePetListType);
 		
-		
+		// load exotic pets
+//		Type exoticAnimalListType = new TypeToken<ArrayList<ExoticAnimalAdapter>>() {}.getType();
+//		shelter.readInPets("src/main/resources/exotic_animals.json", exoticAnimalListType);
 		
 		/**
 		 * Load and wrap the exotic animals using the helper class

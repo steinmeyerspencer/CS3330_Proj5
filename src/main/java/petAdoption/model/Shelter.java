@@ -35,11 +35,13 @@ public class Shelter<T extends Pet> {
 			Scanner fileInput = new Scanner(new FileInputStream(filepath));
             StringBuilder jsonContent = new StringBuilder();
             while (fileInput.hasNextLine()) {
-                jsonContent.append(fileInput.nextLine());
+            	String nextLine = fileInput.nextLine();
+                jsonContent.append(nextLine);
             }
             fileInput.close();
             
             List<T> loadedPets = gson.fromJson(jsonContent.toString(), type);
+            System.out.println(loadedPets);
             
             this.petList.addAll(loadedPets);
             
