@@ -9,7 +9,7 @@ public abstract class Pet {
 	private String type;
 	private String species;
 	private Integer age;
-	private boolean adopted;
+//	private boolean adopted;
 	public abstract boolean isAdoptable();
 	
 	/**
@@ -21,13 +21,13 @@ public abstract class Pet {
 	 * @param age
 	 * @param adopted
 	 */
-	public Pet(String id, String name, String type, String species, Integer age, boolean adopted) {
+	public Pet(String id, String name, String type, String species, Integer age) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.species = species;
         this.age = age;
-        this.adopted = adopted;
+//        this.adopted = adopted;
     }
 	
 	/**
@@ -58,7 +58,7 @@ public abstract class Pet {
 	@Override
 	public String toString() {
 		return "Pet [id=" + id + ", name=" + name + ", type=" + type + ", species=" + species + ", age=" + age
-				+ ", adopted=" + adopted + "]";
+				+ "]";
 	}
 
 	/**
@@ -125,19 +125,19 @@ public abstract class Pet {
 		this.age = age;
 	}
 	
-	/**
-	 * regular getter
-	 * @return
-	 */
-	public boolean isAdopted() {
-		return adopted;
-	}
-	
-	/**
-	 * regular setter
-	 * @param adopted
-	 */
-	public void setAdopted(boolean adopted) {
-		this.adopted = adopted;
-	}
+//	/**
+//	 * regular getter
+//	 * @return
+//	 */
+//	public boolean isAdopted() {
+//		return adopted;
+//	}
+//	
+//	/**
+//	 * regular setter
+//	 * @param adopted
+//	 */
+//	public void setAdopted(boolean adopted) {
+//		this.adopted = adopted;
+//	}
 }

@@ -13,7 +13,7 @@ public class ExoticAnimalAdapter extends Pet{
 		super.setType(exoticAnimal.getCategory());
 		super.setSpecies(exoticAnimal.getSubSpecies());
 		super.setAge(exoticAnimal.getYearsOld());
-		super.setAdopted(false);
+//		super.setAdopted(false);
 		
 		
 	}

@@ -156,10 +156,25 @@ public class PetInformationController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			Pet selected = petListView.getSelectedPet();
-			if(selected != null && !selected.isAdopted() && selected.isAdoptable()) {
-				selected.setAdopted(true);
-				petListView.repaint();
+			Pet rawSelected = petListView.getSelectedPet();
+			if(rawSelected != null ) {
+				// only even try if the pet is an adoptablePet
+				if(rawSelected instanceof AdoptablePet) {
+					AdoptablePet selected = (AdoptablePet) rawSelected;
+					if (selected.isAdoptable()) {
+						selected.setAdopted(true);
+						petListView.repaint();
+					}
+					else {
+						JOptionPane.showMessageDialog(petListView, "Pet has already been adopted" + JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(petListView, "Pet is not adoptable" + JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+			else {
+				JOptionPane.showMessageDialog(petListView, "Please select a pet" + JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 		
@@ -185,14 +200,22 @@ public class PetInformationController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Pet selected = petListView.getSelectedPet();
+			
+			
 			if (selected != null) {
+				// check if pet is adoptable, if so, display the adopted status also
+				String isAdopted = "";
+				if(selected instanceof AdoptablePet) {
+					boolean isAdoptedBool = ((AdoptablePet) selected).isAdopted();
+					isAdopted = "\nAdopted: " + isAdoptedBool;
+				}
 			    JOptionPane.showMessageDialog(petListView,
 			    	"ID: " + selected.getId() +
 			        "\nName: " + selected.getName() +
 			        "\nAge: " + selected.getAge() +
 			        "\nType: " + selected.getType() +
 			        "\nSpecies: " + selected.getSpecies() + 
-			        "\nAdopted: " + selected.isAdopted(),
+			        isAdopted,
 			        "Pet Details",
 			        JOptionPane.INFORMATION_MESSAGE
 			    );

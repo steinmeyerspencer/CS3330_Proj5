@@ -2,18 +2,30 @@ package petAdoption.petModels;
 
 public class AdoptablePet extends Pet{
 	
+	private boolean adopted;
 	
 	public AdoptablePet() {
 		super();
 	}
 	
 	public AdoptablePet(String id, String name, String type, String species, Integer age, boolean adopted) {
-		super(id,name,type,species,age,adopted);
+		super(id,name,type,species,age);
+		this.setAdopted(adopted);
 	}
 
 	public boolean isAdoptable() {
 		return true;
 	}
+
+	public boolean isAdopted() {
+		return adopted;
+	}
+
+	public void setAdopted(boolean adopted) {
+		this.adopted = adopted;
+	}
+	
+	
 
 	
 	// should probably have this but idk how to do it rn
