@@ -1,6 +1,6 @@
 package petAdoption.petModels;
 
-public class ExoticAnimal extends Pet{
+public class ExoticAnimal{
 	
 	/*
 	 * 
@@ -12,72 +12,117 @@ public class ExoticAnimal extends Pet{
     "yearsOld": 4
   },*/
 	
+	
+
+	
+	
 	private String uniqueID;
 	private String animalName;
 	private String category;
 	private String subSpecies;
 	private Integer yearsOld;
 	
-	public Integer changeUniqueIdToInteger(String uniqueID) {
-		String intPartOfID = uniqueID.replace("exo", "");
-		Integer integerID = 1000 + Integer.parseInt(intPartOfID);
-		return integerID;
+	
+	
+	
+	/**
+	 * Do not need constructors for ExoticAnimal class, it will be wrapped inside of an adapter that extends Pet
+	 */
+	
+	
+	
+	/**
+	 * Getter for uniqueID
+	 * @return
+	 */
+	public String getUniqueID() {
+		return uniqueID;
 	}
 	
 	/**
-	 * non-parameterized constructor
+	 * Setter for uniqueID
+	 * @param uniqueID
 	 */
-	public ExoticAnimal() {
-		super();
+	public void setUniqueID(String uniqueID) {
+		this.uniqueID = uniqueID;
 	}
-
+	
+	
 	/**
-	 * parameterized constructor, changes uniqueID from exo00_ to 100_
-	 * @param id
-	 * @param name
-	 * @param type
-	 * @param species
-	 * @param age
-	 * @param adopted
-	 */
-	public ExoticAnimal(String uniqueID, String animalName, String category, String subSpecies, Integer yearsOld) {
-		super(changeUniqueIdToInteger(uniqueID), animalName, category, subspecies, yearsold);
-	}
-
-	/**
-	 * regular getter
+	 * Getter for animalName
 	 * @return
 	 */
-	public boolean isAdoptable() {
-		return false;
+	public String getAnimalName() {
+		return animalName;
 	}
-
-
+	
 	/**
-	 * regular toString
+	 * Setter for animalName
+	 * @param animalName
 	 */
-	@Override
-	public String toString() {
-		return super.toString() + ", ExoticAnimal [adoptable=" + adoptable + "]";
+	public void setAnimalName(String animalName) {
+		this.animalName = animalName;
 	}
+	
+	
+	/**
+	 * Getter for category
+	 * @return
+	 */
+	public String getCategory() {
+		return category;
+	}
+	
+	/**
+	 * Setter for category
+	 * @param category
+	 */
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
+	
+	
+	/**
+	 * getter for subSpecies
+	 * @return
+	 */
+	public String getSubSpecies() {
+		return subSpecies;
+	}
+	
+	/**
+	 * Setter for subSpecies
+	 * @param subSpecies
+	 */
+	public void setSubSpecies(String subSpecies) {
+		this.subSpecies = subSpecies;
+	}
+	
+	
+	
+	/**
+	 * Getter for yearsOld
+	 * @return
+	 */
+	public Integer getYearsOld() {
+		return yearsOld;
+	}
+	
+	/**
+	 * Setter for yearsOld
+	 * @param yearsOld
+	 */
+	public void setYearsOld(Integer yearsOld) {
+		this.yearsOld = yearsOld;
+	}
+	
+	
+	
 
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Integer getAge() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isAdopted() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
+	
+	
 	
 	
 }

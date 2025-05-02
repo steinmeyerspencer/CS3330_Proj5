@@ -59,12 +59,6 @@ public class Shelter<T extends Pet> {
 	}
 	
 	
-	
-
-	
-	
-		
-		
 
 	
 }

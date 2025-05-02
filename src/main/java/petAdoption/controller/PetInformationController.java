@@ -11,9 +11,11 @@ import javax.swing.JOptionPane;
 
 import com.google.gson.reflect.TypeToken;
 
+import petAdoption.model.ExoticAnimalLoader;
 import petAdoption.model.Shelter;
 import petAdoption.model.ShelterModel;
 import petAdoption.petModels.AdoptablePet;
+import petAdoption.petModels.ExoticAnimalAdapter;
 import petAdoption.petModels.Pet;
 import petAdoption.views.AddPetDialog;
 import petAdoption.views.PetListView;
@@ -37,15 +39,20 @@ public class PetInformationController {
 	
 		// set up shelter and read in pets
 		Shelter<Pet> shelter = new Shelter<Pet>();
+		
+		
+		// Load adoptable pets
 		Type adoptablePetListType = new TypeToken<ArrayList<AdoptablePet>>() {}.getType();
 		shelter.readInPets("src/main/resources/pets.json",adoptablePetListType);
-		//NEED TO READ IN EXOTIC PETS WHEN ADAPTER IS WORKING
 		
-//		Type exoticPetType = new TypeToken<ArrayList<ExoticAnimal>>() {}.getType();
-//		shelter.readInPets("src/main/resources/exotic_animals.json",exoticPetType);
 		
-//		List<Pet> adoptablePets = shelter.getPetList();
-//		System.out.println(adoptablePets);
+		
+		/**
+		 * Load and wrap the exotic animals using the helper class
+		 * 
+		 */
+		List<ExoticAnimalAdapter> exoticWrapped = ExoticAnimalLoader.loadFromJson("src/main/resources/exotic_animals.json");
+		shelter.getPetList().addAll(exoticWrapped);
 		
 		// add pets to shelterModel
 		this.shelterModel = new ShelterModel();
