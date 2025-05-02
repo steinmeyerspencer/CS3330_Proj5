@@ -100,6 +100,9 @@ public class PetInformationController {
 		        sharedModel.remove(selectedIndex); 
 		        shelterModel.getPetList().remove(selectedIndex);
 	        }
+			else {
+				JOptionPane.showMessageDialog(petListView, "Please select a pet","Error", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 		
 	}
@@ -150,31 +153,38 @@ public class PetInformationController {
 	}
 	
 	/**
-	 * when adopt button clicked, if pet is selected, is 
+	 * when adopt button clicked, checks three things 
+	 * 1 if pet is selected
+	 * 2 if pet is adoptable
+	 * 3 if pet is already adopted
+	 * pops up error messages if any of the 3 not true, sets adopted to true if all 3 passes 
 	 */
 	private class AdoptButtonActionListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Pet rawSelected = petListView.getSelectedPet();
+			int selectedIndex = petListView.getSelectedPetIndex();
 			if(rawSelected != null ) {
 				// only even try if the pet is an adoptablePet
 				if(rawSelected instanceof AdoptablePet) {
 					AdoptablePet selected = (AdoptablePet) rawSelected;
-					if (selected.isAdoptable()) {
+					if (!selected.isAdopted()) {
 						selected.setAdopted(true);
+						sharedModel.set(selectedIndex,selected);
+						JOptionPane.showMessageDialog(petListView, "Congrats on your new pet!", "Pet Adopted!", JOptionPane.INFORMATION_MESSAGE);
 						petListView.repaint();
 					}
 					else {
-						JOptionPane.showMessageDialog(petListView, "Pet has already been adopted" + JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(petListView, "Pet has already been adopted", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				else {
-					JOptionPane.showMessageDialog(petListView, "Pet is not adoptable" + JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(petListView, "Pet is not adoptable","Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			else {
-				JOptionPane.showMessageDialog(petListView, "Please select a pet" + JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(petListView, "Please select a pet","Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 		
@@ -219,6 +229,9 @@ public class PetInformationController {
 			        "Pet Details",
 			        JOptionPane.INFORMATION_MESSAGE
 			    );
+			}
+			else {
+				JOptionPane.showMessageDialog(petListView, "Please select a pet","Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

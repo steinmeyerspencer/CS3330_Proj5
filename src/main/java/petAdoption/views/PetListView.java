@@ -106,7 +106,7 @@ public class PetListView extends JFrame{
 	 * @return
 	 */
 	public int getSelectedPetIndex() {
-		System.out.println("Selected user index: " + list.getSelectedIndex());
+//		System.out.println("Selected user index: " + list.getSelectedIndex());
 		return list.getSelectedIndex();
 	}
 	

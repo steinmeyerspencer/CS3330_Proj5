@@ -10,7 +10,7 @@ public class AdoptablePet extends Pet{
 	
 	public AdoptablePet(String id, String name, String type, String species, Integer age, boolean adopted) {
 		super(id,name,type,species,age);
-		this.setAdopted(adopted);
+		this.adopted = adopted;
 	}
 
 	public boolean isAdoptable() {
