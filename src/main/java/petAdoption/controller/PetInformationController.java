@@ -41,6 +41,9 @@ public class PetInformationController {
 		shelter.readInPets("src/main/resources/pets.json",adoptablePetListType);
 		//NEED TO READ IN EXOTIC PETS WHEN ADAPTER IS WORKING
 		
+//		Type exoticPetType = new TypeToken<ArrayList<ExoticAnimal>>() {}.getType();
+//		shelter.readInPets("src/main/resources/exotic_animals.json",exoticPetType);
+		
 //		List<Pet> adoptablePets = shelter.getPetList();
 //		System.out.println(adoptablePets);
 		
