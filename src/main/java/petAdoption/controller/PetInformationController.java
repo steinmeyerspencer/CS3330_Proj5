@@ -1,14 +1,20 @@
 package petAdoption.controller;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.lang.reflect.Type;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import petAdoption.model.ExoticAnimalLoader;
@@ -20,6 +26,9 @@ import petAdoption.petModels.ExoticAnimalAdapter;
 import petAdoption.petModels.Pet;
 import petAdoption.views.AddPetDialog;
 import petAdoption.views.PetListView;
+
+import java.io.Writer;
+import java.io.FileWriter;
 
 public class PetInformationController {
 	
@@ -78,6 +87,7 @@ public class PetInformationController {
 	    this.petListView.addActionListenerToViewPetButton(new ViewSelectedPetInformation());
 	    this.petListView.addActionListenerToAddPetButton(new AddButtonActionListener());
 	    this.petListView.addActionListenerToAdoptButton(new AdoptButtonActionListener());
+	    this.petListView.addActionListenerToSaveButton(new SaveButtonActionListener());
 	    
 
 		
@@ -199,7 +209,24 @@ public class PetInformationController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// save list (shelterModel.getPetList()) to JSON file
+			// Create List of pets that copies same list from current model
+			List<Pet> petsToSave = shelterModel.getPetList();
+			
+			
+			// Create timestamped filename
+	        LocalDateTime now = LocalDateTime.now();
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
+	        String formattedDateTime = now.format(formatter);
+	        String filename = "src/main/resources/" + formattedDateTime + "_pets.json";
+	        
+	        
+	        try (Writer writer = new FileWriter(filename)) {
+	            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	            gson.toJson(petsToSave, writer);
+	            JOptionPane.showMessageDialog(petListView, "Pets saved successfully to:\n" + filename, "Save Complete", JOptionPane.INFORMATION_MESSAGE);
+	        } catch (IOException ex) {
+	            JOptionPane.showMessageDialog(petListView, "Error saving pets: " + ex.getMessage(), "Save Failed", JOptionPane.ERROR_MESSAGE);
+	        }
 		}
 		
 	}

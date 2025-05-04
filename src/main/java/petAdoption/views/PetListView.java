@@ -99,6 +99,14 @@ public class PetListView extends JFrame{
 	}
 	
 	/**
+	 * adds action listener to Save button
+	 * @param actionListener
+	 */
+	public void addActionListenerToSaveButton(ActionListener actionListener) {
+	    btnNewButton.addActionListener(actionListener);
+	}
+	
+	/**
 	 * returns petList
 	 * @return
 	 */
