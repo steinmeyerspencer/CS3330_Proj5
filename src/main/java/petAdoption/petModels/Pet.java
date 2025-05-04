@@ -1,6 +1,6 @@
 package petAdoption.petModels;
 
-public abstract class Pet {
+public abstract class Pet implements Comparable<Pet>{
 	
 
 	private String id;
@@ -120,6 +120,20 @@ public abstract class Pet {
 	 */
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+	
+	
+	
+	
+	/**
+	 * Comparable implementation
+	 */
+	@Override
+	public int compareTo(Pet other) {
+		if (this.name == null && other.name == null) return 0;
+		if (this.name == null) return -1;
+		if (other.name == null) return 1;
+		return this.name.compareToIgnoreCase(other.name);
 	}
 	
 

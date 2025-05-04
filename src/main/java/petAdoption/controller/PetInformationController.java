@@ -8,6 +8,7 @@ import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -26,6 +27,9 @@ import petAdoption.petModels.ExoticAnimalAdapter;
 import petAdoption.petModels.Pet;
 import petAdoption.views.AddPetDialog;
 import petAdoption.views.PetListView;
+import petAdoption.petModels.PetAgeComparator;
+import petAdoption.petModels.PetSpeciesComparator;
+import petAdoption.petModels.PetTypeComparator;
 
 import java.io.Writer;
 import java.io.FileWriter;
@@ -88,6 +92,39 @@ public class PetInformationController {
 	    this.petListView.addActionListenerToAddPetButton(new AddButtonActionListener());
 	    this.petListView.addActionListenerToAdoptButton(new AdoptButtonActionListener());
 	    this.petListView.addActionListenerToSaveButton(new SaveButtonActionListener());
+	    
+	    
+	    /**
+	     * Add sorting logic to the sorting combo box
+	     */
+	    this.petListView.getComboBox().addActionListener(e -> {
+	    	String selected = (String) this.petListView.getComboBox().getSelectedItem();
+	    	
+	    	// Copy model to a temporary list
+	    	List<Pet> pets = Collections.list(this.sharedModel.elements());
+	    	
+	    	switch (selected) {
+	    		case "Sort by Name":
+	    			Collections.sort(pets);
+	    			break;
+	    		case "Sort by Age":
+	    			Collections.sort(pets, new PetAgeComparator());
+	    			break;
+	    		case "Sort by Type":
+	    			Collections.sort(pets, new PetTypeComparator());
+	    			break;
+	    		case "Sort by Species":
+	    			Collections.sort(pets, new PetSpeciesComparator());
+	    			break;
+	    		
+	    	}
+	    	
+	    	this.sharedModel.clear();
+	    	for (Pet pet: pets) {
+	    		this.sharedModel.addElement(pet);
+	    	}
+	    	
+	    });
 	    
 
 		

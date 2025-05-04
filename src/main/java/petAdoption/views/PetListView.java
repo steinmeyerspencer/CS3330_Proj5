@@ -62,6 +62,11 @@ public class PetListView extends JFrame{
 		comboBox = new JComboBox();
 		comboBox.setBounds(283, 331, 29, 21);
 		panel.add(comboBox);
+		comboBox.addItem("Sort by Name");
+		comboBox.addItem("Sort by Age");
+		comboBox.addItem("Sort by Type");
+		comboBox.addItem("Sort by Species");
+		
 		
 		btnNewButton = new JButton("Save");
 		btnNewButton.setBounds(146, 331, 85, 21);
@@ -132,5 +137,13 @@ public class PetListView extends JFrame{
 	        return null;
 	    }
 	    return list.getSelectedValue();
+	}
+	
+	
+	/**
+	 * Method to get the combo box
+	 */
+	public JComboBox getComboBox() {
+		return comboBox;
 	}
 }
