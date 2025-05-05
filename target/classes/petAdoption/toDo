@@ -1,8 +1,0 @@
-[SAVE BUTTON]save list back to a json in the format specified in 
-	saveButton action listener will be saving to JSON
-
-[comboBox] SORTING( then put options in the dropdown menu )
-
-i am not going to change the ID field to String because the return value would be messed up and we would have to change a ton of code
-	if you want to change it, feel free, but tbh if we lose a few points for it, we lose a few points
-

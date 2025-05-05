@@ -41,7 +41,6 @@ public class Shelter<T extends Pet> {
             fileInput.close();
             
             List<T> loadedPets = gson.fromJson(jsonContent.toString(), type);
-            System.out.println(loadedPets);
             
             this.petList.addAll(loadedPets);
             
